@@ -3,10 +3,23 @@ let cardEl = document.getElementById("cards");
 let msgEl = document.getElementById("msg");
 let startPanelEl = document.getElementById("start-panel");
 let pointsPanelEl = document.getElementById("points-panel");
-
 let started=false
 let cards
+let playerEl = document.getElementById("player-el");
+let player={
+    name: "Player",
+    chips: 200,
+    sayHello: function(){
+        console.log("Hello!");
+    }
+}
+playerEl.textContent = player.name+": "+player.chips
 
+player.sayHello();
+
+function addPlayerName(){
+
+}
 
 function getCard(){
     let card = Math.floor(Math.random()*10)+2;
@@ -41,7 +54,7 @@ function render(){
     if(points<21){
         msgEl.textContent = "Do you want to try and get closer?"
     } else if(points===21){
-        startPanelEl.textContent= "Blackjack!"
+        startPanelEl.textContent= "Blackjack<!"
         msgEl.textContent = "You win!"
     } else{
         startPanelEl.textContent="Press start to play again."
