@@ -1,6 +1,5 @@
 let points=0;
 let cardEl = document.getElementById("cards");
-let pointsEl = document.getElementById("points");
 let msgEl = document.getElementById("msg");
 let startPanelEl = document.getElementById("start-panel");
 let pointsPanelEl = document.getElementById("points-panel");
@@ -17,31 +16,35 @@ function getCard(){
 function addCard(){
     if(started){
     let card=getCard();
-    cardEl.textContent+=" "+card
     points+=card
     cards.push(card);
-    pointsEl.textContent = points
-    if(points<21){
-        msgEl.textContent = "Do you want to try and get closer?"
-    } else if(points===21){
-        msgEl.textContent = "Blackjack!"
-    } else{
-        startPanelEl.textContent="Press start to play again."
-        msgEl.textContent = "You lost!"
-    }
+    render()
     }
 }
 function startGame() {
     points=0
-    cardEl.textContent = ""
     let firstCard=getCard()
     let secondCard=getCard()
     cards=[firstCard,secondCard]
     points =cards[0]+cards[1]
     started=true;
-    cardEl.textContent="Cards:"+cards[0]+" "+cards[1]
-    pointsPanelEl.textContent= "Points: "
-    pointsEl.textContent=points
-    msgEl.textContent = "Do you want to try and get closer?"
+    render()
+}
+
+function render(){
+    pointsPanelEl.textContent= "Points: "+points
+    cardEl.textContent= "Cards:"
+    for (let index = 0; index < cards.length; index++) {
+        cardEl.textContent+= " "+cards[index]
+    }
     startPanelEl.textContent= "Good luck!"
+    if(points<21){
+        msgEl.textContent = "Do you want to try and get closer?"
+    } else if(points===21){
+        startPanelEl.textContent= "Blackjack!"
+        msgEl.textContent = "You win!"
+    } else{
+        startPanelEl.textContent="Press start to play again."
+        msgEl.textContent = "You lost!"
+    }
 }
