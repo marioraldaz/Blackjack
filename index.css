@@ -3,10 +3,14 @@ color: black;
 text-align: center;
 background-image: url("fondo1.jpg");
 }
-h1{
-}
+
 #white{
     background-color: white;
     margin-left: 400px;
     margin-right: 400px;
+}
+
+button{
+    margin: 4px;
+    background-color: gold !important;
 }
